@@ -29,7 +29,7 @@ export default function AnimationClone() {
             <img
               src="/IMG_0227.png"
               alt="Studentkort"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain bg-[#1c1c1c]"
               style={{ transform: "rotate(90deg)", objectPosition: "center" }}
             />
           </div>
