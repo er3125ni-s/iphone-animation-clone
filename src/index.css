@@ -2,7 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 3D-stöd */
+/* Grundinställningar för att blockera scroll och säkerställa helskärm */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  background-color: black;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 3D-stöd för flip-effekt */
 .perspective {
   perspective: 1000px;
 }
