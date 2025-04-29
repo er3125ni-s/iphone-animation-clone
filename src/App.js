@@ -5,7 +5,7 @@ export default function AnimationClone() {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <div className="h-full w-full bg-black flex items-center justify-center overflow-hidden">
+    <div className="h-full w-full" style={{ background: '#1c1c1c' }}>
       {/* responsiv ”telefonram” */}
       <motion.div
         onClick={() => setFlipped(!flipped)}
