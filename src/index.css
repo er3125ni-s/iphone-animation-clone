@@ -2,21 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Blockera scroll, fullscreen stöd */
 html, body, #root {
   height: 100%;
   margin: 0;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-right: env(safe-area-inset-right, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  padding-left: env(safe-area-inset-left, 0px);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   background-color: black;
   overflow: hidden;
   overscroll-behavior: none;
   touch-action: none;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: auto;
 }
 
-/* 3D support for card flipping */
+/* 3D-effekt för flip */
 .perspective {
   perspective: 1000px;
 }
@@ -29,3 +27,4 @@ html, body, #root {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+
