@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+/**
+ * Fullscreen flip‑card iPhone‑layout.
+ * Klick växlar kontinuerligt mellan fram‑ och baksida.
+ * Bilderna är nu centrerade och skalas upp för att fylla kortet snyggt.
+ */
 export default function AnimationClone() {
   const [flipped, setFlipped] = useState(false);
 
-  // Ett enda toggle‑anrop gör att du kan trycka kontinuerligt var som helst på kortet
   const toggle = () => setFlipped((prev) => !prev);
 
   return (
@@ -13,8 +17,8 @@ export default function AnimationClone() {
       style={{ background: "#1c1c1c" }}
     >
       <motion.div
+        onClick={toggle}
         className="max-w-[375px] w-full aspect-[9/16] p-safe perspective"
-        onClick={toggle} // klick var som helst på ramen togglar
       >
         <motion.div
           animate={{ rotateY: flipped ? 180 : 0 }}
@@ -22,21 +26,21 @@ export default function AnimationClone() {
           className="relative w-full h-full transform-style preserve-3d rounded-3xl overflow-hidden"
         >
           {/* ---------- FRAMSIDAN ---------- */}
-          <div className="absolute inset-0 backface-hidden pointer-events-none">
+          <div className="absolute inset-0 backface-hidden pointer-events-none flex items-center justify-center bg-[#1c1c1c]">
             <img
               src="/IMG_0227.png"
               alt="Framsida"
-              className="w-full h-full object-contain bg-[#1c1c1c]"
-              style={{ transform: "rotate(90deg)", objectPosition: "center" }}
+              className="w-[120%] h-auto object-cover"
+              style={{ transform: "rotate(90deg)" }}
             />
           </div>
 
           {/* ---------- BAKSIDAN ---------- */}
-          <div className="absolute inset-0 rotate-y-180 backface-hidden pointer-events-none" style={{ background: "#1c1c1c" }}>
+          <div className="absolute inset-0 rotate-y-180 backface-hidden pointer-events-none flex items-center justify-center bg-[#1c1c1c]">
             <img
               src="/back.png"
               alt="Baksida"
-              className="w-full h-full object-contain bg-[#1c1c1c]"
+              className="w-[120%] h-auto object-cover"
             />
           </div>
         </motion.div>
