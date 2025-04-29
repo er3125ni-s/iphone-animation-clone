@@ -1,31 +1,45 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+/**
+ * Komponent som visar ett "telefonkort" i fullskärm.
+ * Tryck på kortet för att vända mellan fram- och baksida.
+ * Framsidan visar nu bilden IMG_0227.png som du lagt i public/.
+ */
 export default function AnimationClone() {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <div className="h-full w-full" style={{ background: '#1c1c1c' }}>
-      {/* responsiv ”telefonram” */}
+    <div
+      className="h-full w-full flex items-center justify-center overflow-hidden"
+      style={{ background: "#1c1c1c" }}
+    >
+      {/* Responsiv telefonram med safe‑area‑padding */}
       <motion.div
         onClick={() => setFlipped(!flipped)}
-        className="max-w-[375px] w-full aspect-[9/16] perspective"
+        className="max-w-[375px] w-full aspect-[9/16] p-safe perspective"
       >
         <motion.div
           animate={{ rotateY: flipped ? 180 : 0 }}
           transition={{ duration: 0.8 }}
-          className="relative w-full h-full transform-style preserve-3d rounded-3xl border border-gray-700 shadow-2xl overflow-hidden"
+          className="relative inset-0 w-full h-full transform-style preserve-3d rounded-3xl overflow-hidden"
         >
-          {/* Framsida */}
-          <div className="absolute inset-0 bg-white p-6 flex flex-col items-center justify-center backface-hidden">
-            <h1 className="text-xl font-semibold text-gray-900 mb-2">Välkommen</h1>
-            <p className="text-gray-600">Tryck för att vända kortet</p>
+          {/* ---------- FRAMSIDAN ---------- */}
+          <div className="absolute inset-0 backface-hidden">
+            <img
+              src="/IMG_0227.png"
+              alt="Studentkort"
+              className="w-full h-full object-cover"
+            />
           </div>
 
-          {/* Baksida */}
-          <div className="absolute inset-0 bg-gray-900 p-6 flex flex-col items-center justify-center rotate-y-180 backface-hidden">
-            <h1 className="text-xl font-semibold text-white mb-2">Baksida</h1>
-            <p className="text-gray-300">Det här är baksidan av kortet.</p>
+          {/* ---------- BAKSIDAN ---------- */}
+          <div
+            className="absolute inset-0 rotate-y-180 backface-hidden flex flex-col items-center justify-center space-y-2"
+            style={{ background: "#1c1c1c" }}
+          >
+            <h2 className="text-white text-lg font-semibold">Baksida</h2>
+            <p className="text-gray-400 text-sm">Lägg valfri information här.</p>
           </div>
         </motion.div>
       </motion.div>
