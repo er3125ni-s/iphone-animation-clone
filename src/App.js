@@ -34,17 +34,15 @@ export default function AnimationClone() {
             />
           </div>
 
-          {/* ---------- BAKSIDAN ---------- */}
-          <div
-            className="absolute inset-0 rotate-y-180 backface-hidden flex flex-col items-center justify-center space-y-2"
-            style={{ background: "#1c1c1c" }}
-          >
-            <h2 className="text-white text-lg font-semibold">Baksida</h2>
-            <p className="text-gray-400 text-sm">Lägg valfri information här.</p>
-          </div>
-        </motion.div>
-      </motion.div>
-    </div>
-  );
-}
+        {/* ---------- BAKSIDAN ---------- */}
+        <div
+          className="absolute inset-0 rotate-y-180 backface-hidden"
+          style={{ background: "#1c1c1c" }}    /* reservfärg om bild inte laddar */
+        >
+          <img
+            src="/back.png
+            alt="Baksida"
+            className="w-full h-full object-contain bg-[#1c1c1c]"
+          />
+        </div>
 
