@@ -20,13 +20,24 @@ export default function AnimationClone() {
         onClick={toggle}
         className="max-w-[375px] w-full aspect-[9/16] p-safe perspective"
       >
+        {/* -- Huvudcontainer som roteras -- */}
         <motion.div
           animate={{ rotateY: flipped ? 180 : 0 }}
           transition={{ duration: 0.8 }}
-          className="relative w-full h-full transform-style preserve-3d rounded-3xl overflow-hidden"
+          className="relative w-full h-full rounded-3xl overflow-hidden"
+          style={{
+            transformStyle: "preserve-3d",
+            WebkitTransformStyle: "preserve-3d",
+          }}
         >
           {/* ---------- FRAMSIDAN ---------- */}
-          <div className="absolute inset-0 backface-hidden pointer-events-none flex items-center justify-center bg-[#1c1c1c]">
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-[#1c1c1c]"
+            style={{
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+            }}
+          >
             <img
               src="/IMG_0227.png"
               alt="Framsida"
@@ -36,7 +47,14 @@ export default function AnimationClone() {
           </div>
 
           {/* ---------- BAKSIDAN ---------- */}
-          <div className="absolute inset-0 rotate-y-180 backface-hidden pointer-events-none flex items-center justify-center bg-[#1c1c1c]">
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-[#1c1c1c]"
+            style={{
+              transform: "rotateY(180deg)",
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+            }}
+          >
             <img
               src="/back.png"
               alt="Baksida"
