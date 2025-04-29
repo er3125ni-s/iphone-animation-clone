@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Grundinställningar för att blockera scroll och säkerställa helskärm */
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -12,19 +11,8 @@ html, body, #root {
   padding-left: env(safe-area-inset-left, 0px);
   background-color: black;
   overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
   -webkit-overflow-scrolling: touch;
 }
 
-/* 3D-stöd för flip-effekt */
-.perspective {
-  perspective: 1000px;
-}
-.transform-style {
-  transform-style: preserve-3d;
-}
-.backface-hidden {
-  backface-visibility: hidden;
-}
-.rotate-y-180 {
-  transform: rotateY(180deg);
-}
