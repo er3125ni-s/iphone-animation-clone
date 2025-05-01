@@ -5,32 +5,79 @@ export default function AnimationClone() {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <div className="h-full w-full flex items-center justify-center overflow-hidden" style={{ background: "#1c1c1c" }}>
-      {/* Klicka på kortet för att växla */}
-      <motion.div onClick={() => setFlipped(!flipped)} className="max-w-[375px] w-full aspect-[9/16] p-safe" style={{ perspective: 1000 }}>
-        {/* Roterande container */}
+    <div
+      className="h-full w-full flex items-center justify-center overflow-hidden"
+      style={{ background: "#1c1c1c" }}
+    >
+      {/* Klick var som helst på ramen */}
+      <motion.div
+        onClick={() => setFlipped((p) => !p)}
+        className="max-w-[375px] w-full aspect-[9/16] p-safe"
+        style={{ perspective: 1000 }}
+      >
+        {/* Roterande wrapper */}
         <motion.div
           animate={{ rotateY: flipped ? 180 : 0 }}
           transition={{ duration: 0.8 }}
-          className="relative w-full h-full rounded-3xl overflow-hidden"
-          style={{ transformStyle: "preserve-3d", WebkitTransformStyle: "preserve-3d" }}
+          style={{
+            height: "100%",
+            width: "100%",
+            borderRadius: "1.5rem",
+            overflow: "hidden",
+            transformStyle: "preserve-3d",
+            WebkitTransformStyle: "preserve-3d",
+          }}
         >
-          {/* ---------- FRAM ---------- */}
-          <div className="absolute inset-0 flex items-center justify-center" style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}>
+          {/* ---------- FRAMSIDA ---------- */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+            }}
+          >
             <img
               src="/IMG_0227.png"
               alt="Framsida"
-              className="w-[120%] h-auto object-cover pointer-events-none"
-              style={{ transform: "rotate(90deg)" }}
+              style={{
+                width: "120%",
+                objectFit: "cover",
+                transform: "rotate(90deg)",
+                pointerEvents: "none",
+                backfaceVisibility: "hidden",
+                WebkitBackfaceVisibility: "hidden",
+              }}
             />
           </div>
 
-          {/* ---------- BAK ---------- */}
-          <div className="absolute inset-0 flex items-center justify-center" style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}>
+          {/* ---------- BAKSIDA ---------- */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              transform: "rotateY(180deg)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+            }}
+          >
             <img
               src="/back.png"
               alt="Baksida"
-              className="w-[120%] h-auto object-cover pointer-events-none"
+              style={{
+                width: "120%",
+                objectFit: "cover",
+                pointerEvents: "none",
+                transform: "rotate(90deg)", /* ta bort om du vill ha den oroterad */
+                backfaceVisibility: "hidden",
+                WebkitBackfaceVisibility: "hidden",
+              }}
             />
           </div>
         </motion.div>
