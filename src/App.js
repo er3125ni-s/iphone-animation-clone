@@ -9,12 +9,13 @@ export default function AnimationClone() {
       className="h-full w-full flex items-center justify-center overflow-hidden"
       style={{ background: "#1c1c1c" }}
     >
-      {/* klick var som helst på ramen */}
+      {/* container med perspektiv och klick‑toggle */}
       <motion.div
         onClick={() => setFlipped((prev) => !prev)}
         className="max-w-[375px] w-full aspect-[9/16] p-safe"
-        style={{ perspective: 1000 }}           {/* viktig! */}
+        style={{ perspective: 1000 }}
       >
+        {/* roterande wrapper */}
         <motion.div
           animate={{ rotateY: flipped ? 180 : 0 }}
           transition={{ duration: 0.8 }}
