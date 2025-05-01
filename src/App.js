@@ -1,15 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-/**
- * Fullscreen flip‑card iPhone‑layout.
- * Klick växlar kontinuerligt mellan fram‑ och baksida.
- * Bilderna är nu centrerade och skalas upp för att fylla kortet snyggt.
- */
 export default function AnimationClone() {
   const [flipped, setFlipped] = useState(false);
-
-  const toggle = () => setFlipped((prev) => !prev);
 
   return (
     <div
@@ -17,10 +10,9 @@ export default function AnimationClone() {
       style={{ background: "#1c1c1c" }}
     >
       <motion.div
-        onClick={toggle}
+        onClick={() => setFlipped((p) => !p)}
         className="max-w-[375px] w-full aspect-[9/16] p-safe perspective"
       >
-        {/* -- Huvudcontainer som roteras -- */}
         <motion.div
           animate={{ rotateY: flipped ? 180 : 0 }}
           transition={{ duration: 0.8 }}
@@ -30,7 +22,7 @@ export default function AnimationClone() {
             WebkitTransformStyle: "preserve-3d",
           }}
         >
-          {/* ---------- FRAMSIDAN ---------- */}
+          {/* ---------- FRAM ---------- */}
           <div
             className="absolute inset-0 flex items-center justify-center bg-[#1c1c1c]"
             style={{
@@ -42,11 +34,15 @@ export default function AnimationClone() {
               src="/IMG_0227.png"
               alt="Framsida"
               className="w-[120%] h-auto object-cover"
-              style={{ transform: "rotate(90deg)" }}
+              style={{
+                transform: "rotate(90deg)",
+                backfaceVisibility: "hidden",
+                WebkitBackfaceVisibility: "hidden",
+              }}
             />
           </div>
 
-          {/* ---------- BAKSIDAN ---------- */}
+          {/* ---------- BAK ---------- */}
           <div
             className="absolute inset-0 flex items-center justify-center bg-[#1c1c1c]"
             style={{
@@ -59,6 +55,11 @@ export default function AnimationClone() {
               src="/back.png"
               alt="Baksida"
               className="w-[120%] h-auto object-cover"
+              style={{
+                transform: "rotate(90deg)",
+                backfaceVisibility: "hidden",
+                WebkitBackfaceVisibility: "hidden",
+              }}
             />
           </div>
         </motion.div>
