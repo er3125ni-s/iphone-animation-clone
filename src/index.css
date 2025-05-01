@@ -2,22 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Lås helskärm, blockera scroll, hantera safe-area */
+/* Basinställningar för helskärm och korrekt bakgrund */
 html, body, #root {
   height: 100%;
+  width: 100%;
   margin: 0;
-  padding-top:    env(safe-area-inset-top,    0px);
-  padding-right:  env(safe-area-inset-right,  0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  padding-left:   env(safe-area-inset-left,   0px);
-  background: #1c1c1c;
+  padding: env(safe-area-inset-top, 0)
+           env(safe-area-inset-right, 0)
+           env(safe-area-inset-bottom, 0)
+           env(safe-area-inset-left, 0);
+  background-color: #1c1c1c;
   overflow: hidden;
   overscroll-behavior: none;
   touch-action: none;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* 3D-klasser för flip */
-.perspective      { perspective: 1000px; }
-.transform-style  { transform-style: preserve-3d; }
-.backface-hidden  { backface-visibility: hidden; }
-.rotate-y-180     { transform: rotateY(180deg); }
+/* Hindra dubbelklick-zoom (iOS) */
+body {
+  touch-action: manipulation;
+}
+
+/* Förhindra att användaren kan zooma med gest */
+html {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+/* 3D-stöd för flip-effekt */
+.perspective {
+  perspective: 1000px;
+}
+.transform-style {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
